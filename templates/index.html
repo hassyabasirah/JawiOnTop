@@ -239,36 +239,50 @@ a:hover {
     input[type="submit"] {
         margin-right: 3px;
     }
-
-    .logo,
-.logo span,
-h1.logo,
-.navbar-brand,
-.brand-name {
-    font-family: 'Playfair Display', Georgia, serif !important;
-    font-weight: 600 !important;
-    letter-spacing: -1px;
 }
 
-.logo {
+/* FONT LOGO JAWIONTOP */
+.logo, {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -1px;
     color: #5B1720 !important;
+    text-align: center;
 }
 
 .logo span {
+    font-family: 'Playfair Display', Georgia, serif !important;
     color: #B18A60 !important;
 }
-    
+
+/* FONT TAJUK */
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* FONT TEKS BIASA */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+}
+
 </style>
 </head>
-
+    
 <body>
+
 <main class="container">
-    <h1>JawiOnTop</h1>
+
+    <h1 class="logo">Jawi<span>OnTop</span></h1>
+
     <p class="subtitle">
         Jawi, but make it easy!
     </p>
 
     <label for="mode">Pilih fungsi</label>
+
     <select id="mode" onchange="updateMode()">
         <option value="jawi">Rumi → Jawi</option>
         <option value="rumi">Jawi → Rumi</option>
