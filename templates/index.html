@@ -1,251 +1,334 @@
 
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JawiOnTop</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
-
-:root {
-    --maroon: #641E2B;
-    --maroon-dark: #45121D;
-    --maroon-light: #8C4552;
-    --beige: #F5EFE6;
-    --cream: #FFFCF7;
-    --gold: #C4A16A;
-    --gold-light: #E8D7B9;
-    --text: #35272A;
-    --muted: #85777A;
-    --border: #E7DCD0;
-    --white: #FFFFFF;
-    --shadow: 0 12px 35px rgba(75, 29, 38, 0.09);
-}
-
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
+    font-family: Playfair Display, Playfair Display;
+    background: #f8f6f0;
     margin: 0;
-    min-height: 100vh;
-    padding: 45px 18px;
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background:
-        radial-gradient(ellipse at top left,
-            rgba(196, 161, 106, 0.12), transparent 40%),
-        linear-gradient(135deg, var(--beige), var(--cream));
+    padding: 25px 14px;
+    color: #26332f;
 }
 
 .container {
-    position: relative;
-    max-width: 760px;
-    margin: 15px auto;
-    padding: 38px;
-    background: rgba(255, 252, 247, 0.96);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-
-/* Decorative accent */
-.container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(
-        90deg,
-        var(--maroon-dark),
-        var(--gold),
-        var(--maroon-light)
-    );
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #00000012;
 }
 
 h1 {
-    margin: 5px 0 10px;
     text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 6vw, 50px);
-    font-weight: 700;
-    letter-spacing: -1.5px;
-    color: var(--maroon);
+    color: #176b57;
+    margin-bottom: 8px;
 }
 
 .subtitle {
-    margin: 0 0 35px;
     text-align: center;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
+    color: #657786;
+    line-height: 1.5;
 }
 
 label {
     display: block;
-    margin: 24px 0 10px;
-    color: var(--maroon);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
+    margin: 20px 0 8px;
+    font-weight: bold;
 }
 
-select,
-textarea {
-    display: block;
+select, textarea {
     width: 100%;
-    padding: 15px 16px;
-    color: var(--text);
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-select {
-    cursor: pointer;
+    padding: 13px;
+    border: 1px solid #ccd6df;
+    border-radius: 10px;
+    font: inherit;
 }
 
 textarea {
-    min-height: 145px;
+    min-height: 130px;
     resize: vertical;
-    line-height: 1.8;
-}
-
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(196, 161, 106, 0.14);
+    font-size: 18px;
 }
 
 #output {
     direction: rtl;
     text-align: right;
-    font-family: 'Noto Naskh Arabic', serif;
     font-size: 25px;
-    background: #F8F3EC;
-    color: var(--maroon-dark);
+    background: #f8faf9;
 }
 
 button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 15px 7px 0 0;
-    padding: 13px 22px;
-    border: 1px solid var(--maroon);
-    border-radius: 10px;
-    background: var(--maroon);
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 12px 16px;
+    margin: 10px 5px 0 0;
+    border: 0;
+    border-radius: 9px;
+    background: #176b57;
+    color: white;
+    font-size: 15px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-
-button:hover:not(:disabled) {
-    background: var(--maroon-dark);
-    box-shadow: 0 5px 14px rgba(100, 30, 43, 0.16);
-    transform: translateY(-1px);
-}
-
-button:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 3px;
 }
 
 button.secondary {
-    background: transparent;
-    color: var(--maroon);
-    border-color: var(--gold);
-}
-
-button.secondary:hover:not(:disabled) {
-    background: var(--beige);
+    background: #e6efec;
+    color: #176b57;
 }
 
 button:disabled {
-    opacity: 0.65;
+    opacity: .6;
     cursor: wait;
-    transform: none;
-}
-
-#suggestions {
-    margin-top: 20px;
-    padding: 0;
-    line-height: 1.9;
-}
-
-.suggestion {
-    display: inline-flex;
-    margin: 5px 4px;
-    padding: 8px 13px;
-    border: 1px solid var(--gold-light);
-    border-radius: 8px;
-    background: var(--beige);
-    color: var(--maroon);
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.suggestion:hover {
-    background: var(--gold-light);
 }
 
 #message {
-    margin-top: 22px;
-    padding: 13px 15px;
-    border-left: 3px solid var(--gold);
-    border-radius: 0 8px 8px 0;
-    background: #F8F3EC;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
+    color: #657786;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-.note {
+#suggestions {
     margin-top: 16px;
-    color: var(--muted);
-    font-size: 12px;
     line-height: 1.8;
 }
 
-/* Mobile responsive */
-@media (max-width: 600px) {
-    body {
-        padding: 18px 12px;
-    }
+.suggestion {
+    display: inline-block;
+    margin: 4px;
+    padding: 7px 10px;
+    background: #e6efec;
+    color: #176b57;
+    border-radius: 7px;
+    cursor: pointer;
+    border: 1px solid #c7ded5;
+}
 
-    .container {
-        margin: 8px auto;
-        padding: 24px 19px;
-        border-radius: 18px;
-    }
+.note {
+    font-size: 13px;
+    color: #657786;
+}
 
-    h1 {
-        font-size: 36px;
-    }
-
-    .subtitle {
-        margin-bottom: 25px;
-        font-size: 14px;
-    }
-
-    textarea {
-        min-height: 120px;
-    }
-
-    button {
-        margin-top: 12px;
-        padding: 12px 15px;
-    }
-
-    #output {
-        font-size: 23px;
-    }
+@media (max-width: 480px) {
+    .container { padding: 18px; }
+    button { margin-right: 3px; }
 }
 </style>
-```
+</head>
+
+<body>
+<main class="container">
+    <h1>JawiOnTop</h1>
+    <p class="subtitle">
+        Jawi, but make it easy!
+    </p>
+
+    <label for="mode">Pilih fungsi</label>
+    <select id="mode" onchange="updateMode()">
+        <option value="jawi">Rumi → Jawi</option>
+        <option value="rumi">Jawi → Rumi</option>
+        <option value="spell">Semak ejaan Rumi</option>
+    </select>
+
+    <label for="input" id="inputLabel">Masukkan teks Rumi</label>
+    <textarea id="input"
+        placeholder="Taip teks Bahasa Melayu di sini..."></textarea>
+
+    <button id="mainButton" onclick="processText()">
+        Tukar ke Jawi
+    </button>
+    <button class="secondary" onclick="clearText()">Padam</button>
+
+    <label for="output" id="outputLabel">Hasil tulisan Jawi</label>
+    <textarea id="output" readonly
+        placeholder="Hasil akan dipaparkan di sini..."></textarea>
+
+    <button class="secondary" onclick="copyText()">Salin hasil</button>
+
+    <div id="suggestions"></div>
+    <p id="message" role="status" aria-live="polite">
+        Selamat datang ke JawiOnTop!
+    </p>
+
+    <p class="note">
+        Cadangan ejaan berdasarkan kamus. Sila semak hasil sebelum digunakan.
+    </p>
+</main>
+
+<script>
+const input = document.getElementById("input");
+const output = document.getElementById("output");
+const message = document.getElementById("message");
+const mode = document.getElementById("mode");
+const mainButton = document.getElementById("mainButton");
+const suggestionsBox = document.getElementById("suggestions");
+
+function updateMode() {
+    suggestionsBox.replaceChildren();
+    output.value = "";
+
+    if (mode.value === "jawi") {
+        input.dir = "ltr";
+        input.placeholder = "Taip teks Rumi di sini...";
+        document.getElementById("inputLabel").textContent =
+            "Masukkan teks Rumi";
+        document.getElementById("outputLabel").textContent =
+            "Hasil tulisan Jawi";
+        output.dir = "rtl";
+        mainButton.textContent = "Tukar ke Jawi";
+
+    } else if (mode.value === "rumi") {
+        input.dir = "rtl";
+        input.placeholder = "اكتب النص الجاوي هنا";
+        document.getElementById("inputLabel").textContent =
+            "Masukkan teks Jawi";
+        document.getElementById("outputLabel").textContent =
+            "Hasil tulisan Rumi";
+        output.dir = "ltr";
+        mainButton.textContent = "Tukar ke Rumi";
+
+    } else {
+        input.dir = "ltr";
+        input.placeholder = "Taip ayat Bahasa Melayu untuk disemak...";
+        document.getElementById("inputLabel").textContent =
+            "Teks yang hendak disemak";
+        document.getElementById("outputLabel").textContent =
+            "Teks selepas pembetulan";
+        output.dir = "ltr";
+        mainButton.textContent = "Semak ejaan";
+    }
+
+    message.textContent = "Sila masukkan teks.";
+}
+
+async function processText() {
+    const text = input.value.trim();
+
+    if (!text) {
+        message.textContent = "Sila masukkan teks dahulu.";
+        return;
+    }
+
+    const endpoint = {
+        jawi: "/convert",
+        rumi: "/reverse",
+        spell: "/spellcheck"
+    }[mode.value];
+
+    mainButton.disabled = true;
+    suggestionsBox.replaceChildren();
+    message.textContent = "Sedang memproses...";
+
+    try {
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({text})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Permintaan gagal.");
+        }
+
+        if (mode.value === "spell") {
+            output.value = text;
+            showSuggestions(data.suggestions || []);
+        } else {
+            output.value = data.result;
+        }
+
+    } catch (error) {
+        console.error(error);
+        message.textContent =
+            "Tidak berjaya. Periksa sambungan dan log server.";
+    } finally {
+        mainButton.disabled = false;
+    }
+}
+
+function showSuggestions(items) {
+    suggestionsBox.replaceChildren();
+
+    if (items.length === 0) {
+        message.textContent =
+            "Tiada perkataan mencurigakan ditemui dalam kamus. Ini bukan jaminan semua ejaan betul.";
+        return;
+    }
+
+    message.textContent =
+        "Perkataan yang mungkin perlu disemak. Klik cadangan untuk menggantikannya:";
+
+    items.forEach(item => {
+        const section = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = item.word + ": ";
+        section.appendChild(title);
+
+        item.suggestions.forEach(candidate => {
+            const button = document.createElement("button");
+            button.className = "suggestion";
+            button.type = "button";
+            button.textContent = candidate;
+
+            button.addEventListener("click", () => {
+                replaceWord(item.word, candidate);
+            });
+
+            section.appendChild(button);
+        });
+
+        suggestionsBox.appendChild(section);
+    });
+}
+
+function replaceWord(original, replacement) {
+    const escaped = original.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp("\\b" + escaped + "\\b", "gi");
+
+    input.value = input.value.replace(pattern, match => {
+        if (match === match.toUpperCase()) {
+            return replacement.toUpperCase();
+        }
+        if (match[0] === match[0].toUpperCase()) {
+            return replacement[0].toUpperCase() + replacement.slice(1);
+        }
+        return replacement;
+    });
+
+    output.value = input.value;
+    message.textContent =
+        "Cadangan digunakan. Tekan Semak ejaan sekali lagi untuk menyemak semula.";
+}
+
+function clearText() {
+    input.value = "";
+    output.value = "";
+    suggestionsBox.replaceChildren();
+    message.textContent = "Ruangan telah dikosongkan.";
+}
+
+async function copyText() {
+    if (!output.value) {
+        message.textContent = "Tiada teks untuk disalin.";
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(output.value);
+        message.textContent = "Teks berjaya disalin!";
+    } catch {
+        output.focus();
+        output.select();
+        message.textContent =
+            "Teks dipilih. Salin menggunakan fungsi Copy pada peranti.";
+    }
+}
+</script>
+</body>
+</html>
