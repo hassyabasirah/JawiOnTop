@@ -16,13 +16,47 @@
         --border-color: #E6DFD5;
         --text-main: #2C2A29;
       }
-body {
-    font-family: Playfair Display, Playfair Display;
-    background: #f8f6f0;
-    margin: 0;
-    padding: 25px 14px;
-    color: #26332f;
-}
+body body {
+        background-color: var(--bg-beige);
+        color: var(--text-main);
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Kotak Teks & Kad */
+      textarea, input[type="text"], .card, .box {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      /* Butang Tema Maroon */
+      button, .btn, input[type="submit"] {
+        background-color: var(--primary-maroon) !important;
+        color: #FFFFFF !important;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      button:hover, .btn:hover {
+        background-color: var(--primary-hover) !important;
+      }
+    </style>
+    <!-- ========================================== -->
+
+</head>
+<body>
+    <!-- KANDUNGAN WEB ANDA BERMULA DI SINI (DALAM <body>) -->
+    <!-- Contoh: Tajuk dan kotak translator anda -->
+    <div class="container">
+        <h1>JawiOnTop</h1>
+        <p>Jawi, but make it easy!</p>
+        
+        <!-- Bahagian borang atau kotak rumi/jawi anda yang sedia ada -->
+    </div>
 
 .container {
     max-width: 700px;
