@@ -15,111 +15,159 @@
     --border-color: #E6DFD5;
     --text-main: #2C2A29;
     --text-muted: #746B65;
+    --soft-beige: #F2EBE2;
 }
+
+/* Asas halaman */
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
+    padding: 20px;
     background-color: var(--bg-beige);
     color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-  }
-
-  /* Kotak Teks & Kad */
-  textarea, input[type="text"], .card, .box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px;
-  }
-
-  /* Butang Tema Maroon */
-  button, .btn, input[type="submit"] {
-    background-color: var(--primary-maroon) !important;
-    color: #FFFFFF !important;
-    border-radius: 8px;
-    border: none;
-    font-weight: 600;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-
-  button:hover, .btn:hover {
-    background-color: var(--primary-hover) !important;
-  }
-
-.container {
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 24px;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px #00000012;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
 }
 
+/* Bekas utama */
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 28px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(44, 42, 41, 0.06);
+}
+
+/* Tajuk */
 h1 {
-    text-align: center;
-    color: ;
+    margin-top: 0;
     margin-bottom: 8px;
+    color: var(--primary-maroon);
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--text-muted);
     text-align: center;
-    color: #657786;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
+/* Label */
 label {
     display: block;
     margin: 20px 0 8px;
-    font-weight: bold;
+    color: var(--text-main);
+    font-weight: 600;
 }
 
-select, textarea {
+/* Input dan pilihan */
+select,
+textarea,
+input[type="text"] {
+    display: block;
     width: 100%;
-    padding: 13px;
-    border: 1px solid #ccd6df;
+    padding: 13px 14px;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
     font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/* Fokus input */
+select:focus,
+textarea:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-maroon);
+    box-shadow: 0 0 0 3px rgba(107, 45, 48, 0.10);
+}
+
+/* Ruang memasukkan teks */
 textarea {
     min-height: 130px;
     resize: vertical;
-    font-size: 18px;
+    font-size: 17px;
 }
 
+/* Hasil tulisan Jawi */
 #output {
     direction: rtl;
     text-align: right;
     font-size: 25px;
-    background: #f8faf9;
+    line-height: 1.9;
+    background-color: #FCFAF7;
+    overflow-wrap: anywhere;
 }
 
-button {
-    padding: 12px 16px;
+/* Butang utama */
+button,
+.btn,
+input[type="submit"] {
+    display: inline-block;
     margin: 10px 5px 0 0;
-    border: 0;
+    padding: 11px 18px;
+    border: 1px solid var(--primary-maroon);
     border-radius: 9px;
-    background: ;
-    color: white;
+    background-color: var(--primary-maroon);
+    color: #FFFFFF;
     font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
-button.secondary {
-    background: #e6efec;
-    color: ;
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
+    background-color: var(--primary-hover);
 }
 
-button:disabled {
-    opacity: .6;
+button:active,
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* Butang sekunder */
+button.secondary,
+.btn.secondary {
+    background-color: var(--soft-beige);
+    color: var(--primary-maroon);
+    border-color: var(--border-color);
+}
+
+button.secondary:hover,
+.btn.secondary:hover {
+    background-color: #E9DED2;
+}
+
+/* Butang ketika proses berjalan */
+button:disabled,
+input[type="submit"]:disabled {
+    opacity: 0.6;
     cursor: wait;
 }
 
+/* Mesej sistem */
 #message {
-    color: #657786;
+    color: var(--text-muted);
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
+/* Cadangan ejaan */
 #suggestions {
     margin-top: 16px;
     line-height: 1.8;
@@ -128,23 +176,65 @@ button:disabled {
 .suggestion {
     display: inline-block;
     margin: 4px;
-    padding: 7px 10px;
-    background: #e6efec;
-    color: #176b57;
+    padding: 7px 11px;
+    background-color: var(--soft-beige);
+    color: var(--primary-maroon);
+    border: 1px solid var(--border-color);
     border-radius: 7px;
     cursor: pointer;
-    border: 1px solid #c7ded5;
+    transition: background-color 0.2s;
 }
 
+.suggestion:hover {
+    background-color: #E9DED2;
+}
+
+/* Nota kecil */
 .note {
+    color: var(--text-muted);
     font-size: 13px;
-    color: #657786;
+    line-height: 1.6;
 }
 
-@media (max-width: 480px) {
-    .container { padding: 18px; }
-    button { margin-right: 3px; }
+/* Pautan */
+a {
+    color: var(--primary-maroon);
 }
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Paparan telefon */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        margin: 10px auto;
+        padding: 20px 16px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    textarea {
+        font-size: 16px;
+    }
+
+    #output {
+        font-size: 22px;
+    }
+
+    button,
+    .btn,
+    input[type="submit"] {
+        margin-right: 3px;
+    }
+
 </style>
 </head>
 
