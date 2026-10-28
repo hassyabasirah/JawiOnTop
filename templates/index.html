@@ -210,14 +210,13 @@ a:hover {
     color: var(--primary-hover);
 }
 
-/* Paparan telefon */
+/* PAPARAN TELEFON */
 @media (max-width: 550px) {
     .logo {
-        font-size: 36px
-            letter-spacing: -1px
-            padding: 6px;
+        font-size: 36px;
+        letter-spacing: -1px;
+        padding: 6px;
     }
-     }
 
     .container {
         margin: 10px auto;
@@ -242,22 +241,27 @@ a:hover {
     input[type="submit"] {
         margin-right: 3px;
     }
+
+    .translation-tab {
+        padding: 12px 4px;
+        font-size: 12px;
+    }
 }
 
-/* FONT LOGO JAWIONTOP */
-.logo, {
-    font-family: 'Playfair Display', Georgia, serif !important;
+/* LOGO JAWIONTOP */
+.logo {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 50px;
     font-weight: 600;
     letter-spacing: -1.5px;
-    color: #5B1720 !important;
+    color: #5B1720;
     text-align: center;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
 }
 
 .logo span {
-    font-family: 'Playfair Display', Georgia, serif !important;
-    color: #B18A60 !important;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #B18A60;
 }
 
 /* FONT TAJUK */
@@ -269,9 +273,75 @@ h3 {
 
 /* FONT TEKS BIASA */
 body {
-   font-family: 'Playfair Display', Georgia, serif !important;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
+/* BEKAS BUTANG TERJEMAHAN */
+.translation-tabs {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+    padding: 5px;
+    margin-top: 8px;
+    background-color: var(--soft-beige);
+    border-radius: 12px;
+}
+
+/* BUTANG RUMI-JAWI DAN JAWI-RUMI */
+.translation-tab {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 8px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background-color: transparent;
+    color: var(--primary-maroon);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* BUTANG TERJEMAHAN AKTIF */
+.translation-tab.active {
+    background-color: var(--primary-maroon);
+    color: #FFFFFF;
+}
+
+/* HOVER BUTANG TIDAK AKTIF */
+.translation-tab:hover:not(.active) {
+    background-color: #E9DED2;
+    color: var(--primary-maroon);
+}
+
+/* BUTANG SEMAK EJAAN */
+.spell-tab {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0;
+    padding: 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+    background-color: transparent;
+    color: var(--text-muted);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* SEMAK EJAAN AKTIF */
+.spell-tab.active {
+    background-color: var(--primary-maroon);
+    border-color: var(--primary-maroon);
+    color: #FFFFFF;
+}
+
+/* HOVER SEMAK EJAAN */
+.spell-tab:hover:not(.active) {
+    background-color: var(--soft-beige);
+    color: var(--primary-maroon);
+}
 </style>
 </head>
     
@@ -286,6 +356,8 @@ body {
     </p>
 
   <label>Pilih fungsi</label>
+    rumiTab.setAttribute("aria-pressed", String(newMode === "jawi"));
+jawiTab.setAttribute("aria-pressed", String(newMode === "rumi"));
 
 <div class="translation-tabs">
     <button
@@ -352,7 +424,7 @@ function changeMode(newMode) {
     const rumiTab = document.getElementById("rumiToJawi");
     const jawiTab = document.getElementById("jawiToRumi");
     const spellTab = document.getElementById("spellTab");
-
+}[currentMode];
     // Tukar warna butang aktif
     rumiTab.classList.toggle("active", newMode === "jawi");
     jawiTab.classList.toggle("active", newMode === "rumi");
@@ -370,7 +442,7 @@ function changeMode(newMode) {
             "Hasil tulisan Jawi";
 
         output.dir = "rtl";
-
+if (currentMode === "spell") {
         mainButton.textContent = "Tukar ke Jawi";
 
     } else if (newMode === "rumi") {
