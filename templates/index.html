@@ -163,7 +163,49 @@ button.secondary:hover,
 .btn.secondary:hover {
     background-color: #E9DED2;
 }
+/* BUTANG SALIN HASIL */
+#copyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
 
+    width: 100%;
+    min-height: 92px;
+    margin: 22px 0 10px;
+    padding: 16px 20px;
+
+    background-color: transparent;
+    color: var(--primary-maroon);
+
+    border: 1.5px solid var(--primary-maroon);
+    border-radius: 17px;
+
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* IKON SALIN */
+#copyButton .copy-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+/* KESAN HOVER */
+#copyButton:hover {
+    background-color: var(--primary-maroon);
+    color: #FFFFFF;
+}
+
+/* KESAN APABILA DITEKAN */
+#copyButton:active {
+    transform: scale(0.99);
+}
 /* Butang ketika proses berjalan */
 button:disabled,
 input[type="submit"]:disabled {
@@ -255,6 +297,18 @@ a:hover {
     .translation-tab {
         padding: 12px 4px;
         font-size: 12px;
+    }
+    #copyButton {
+        min-height: 72px;
+        gap: 16px;
+        padding: 14px;
+        font-size: 23px;
+        border-radius: 14px;
+    }
+
+    #copyButton .copy-icon {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -483,8 +537,23 @@ body {
     <textarea id="output" readonly
         placeholder="Hasil akan dipaparkan di sini..."></textarea>
 
-    <button class="secondary" onclick="copyText()">Salin hasil</button>
+    <button id="copyButton" onclick="copyText()" type="button">
+    <svg class="copy-icon"
+         xmlns="http://www.w3.org/2000/svg"
+         width="36" height="36"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.6"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         aria-hidden="true">
+        <rect x="8" y="8" width="13" height="13" rx="2"></rect>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path>
+    </svg>
 
+    <span>Salin hasil</span>
+</button>
     <div id="suggestions"></div>
     <p id="message" role="status" aria-live="polite"></p>
 
