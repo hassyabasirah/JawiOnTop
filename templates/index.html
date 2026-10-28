@@ -430,12 +430,17 @@ body {
     background-color: var(--soft-beige);
     color: var(--primary-maroon);
 }
-    /* Butang terjemahan utama */
-#mainButton {
-    display: block;
+    /* BUTANG TERJEMAHAN UTAMA */
+    #mainButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
     width: 100%;
+    height: 58px;
     margin: 16px 0 10px;
-    padding: 14px 20px;
+    padding: 0 20px;
 
     background-color: var(--primary-maroon);
     color: #FFFFFF;
@@ -443,24 +448,30 @@ body {
     border: none;
     border-radius: 12px;
 
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 16px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
     font-weight: 600;
+    line-height: 1;
 
     cursor: pointer;
     transition: all 0.25s ease;
 }
 
-/* Kesan apabila tetikus berada di atas butang */
-#mainButton:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(107, 45, 48, 0.18);
+/* IKON ANAK PANAH */
+#mainButton .main-button-icon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
 }
 
-/* Kesan apabila butang ditekan */
+/* KESAN HOVER */
+#mainButton:hover {
+    background-color: var(--primary-hover);
+}
+
+/* KESAN APABILA DITEKAN */
 #mainButton:active {
-    transform: translateY(0);
+    transform: translateY(1px);
 }
     .footer {
     width: 100%;
@@ -552,7 +563,22 @@ body {
     <textarea id="input"
         placeholder="Taip teks Bahasa Melayu di sini..."></textarea>
 
-    <button id="mainButton" onclick="processText()">
+   <button id="mainButton" onclick="processText()" type="button">
+    <span id="mainButtonText">Tukar ke Jawi</span>
+
+    <svg class="main-button-icon"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.8"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         aria-hidden="true">
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+    </svg>
+</button> <button id="mainButton" onclick="processText()">
         Tukar ke Jawi
     </button>
     <button class="secondary" onclick="clearText()">Padam</button>
@@ -625,7 +651,7 @@ function changeMode(newMode) {
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Jawi";
 
-        mainButton.textContent = "Tukar ke Jawi";
+      document.getElementById("mainButtonText").textContent = "Tukar ke Jawi";
 
     } else {
         input.dir = "rtl";
@@ -638,7 +664,7 @@ function changeMode(newMode) {
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Rumi";
 
-        mainButton.textContent = "Tukar ke Rumi";
+        document.getElementById("mainButtonText").textContent = "Tukar ke Rumi";
     }
 
     output.value = "";
