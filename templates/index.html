@@ -247,11 +247,6 @@ a:hover {
     input[type="submit"] {
         margin-right: 3px;
     }
-
-    .translation-tab {
-        padding: 12px 4px;
-        font-size: 12px;
-    }
 }
 
 /* LOGO JAWIONTOP */
@@ -393,70 +388,6 @@ const message = document.getElementById("message");
 let currentMode = "jawi";
 const mainButton = document.getElementById("mainButton");
 const suggestionsBox = document.getElementById("suggestions");
-
-function changeMode(newMode) {
-    currentMode = newMode;
-
-    const rumiTab = document.getElementById("rumiToJawi");
-    const jawiTab = document.getElementById("jawiToRumi");
-    const spellTab = document.getElementById("spellTab");
-}[currentMode];
-    // Tukar warna butang aktif
-    rumiTab.classList.toggle("active", newMode === "jawi");
-    jawiTab.classList.toggle("active", newMode === "rumi");
-    spellTab.classList.toggle("active", newMode === "spell");
-
-    // Tetapkan arah teks dan label
-    if (newMode === "jawi") {
-        input.dir = "ltr";
-        input.placeholder = "Taip teks Rumi di sini...";
-
-        document.getElementById("inputLabel").textContent =
-            "Masukkan teks Rumi";
-
-        document.getElementById("outputLabel").textContent =
-            "Hasil tulisan Jawi";
-
-        output.dir = "rtl";
-if (currentMode === "spell") {
-        mainButton.textContent = "Tukar ke Jawi";
-
-    } else if (newMode === "rumi") {
-        input.dir = "rtl";
-        input.placeholder = "Taip teks Jawi di sini...";
-
-        document.getElementById("inputLabel").textContent =
-            "Masukkan teks Jawi";
-
-        document.getElementById("outputLabel").textContent =
-            "Hasil tulisan Rumi";
-
-        output.dir = "ltr";
-
-        mainButton.textContent = "Tukar ke Rumi";
-
-    } else {
-        input.dir = "ltr";
-        input.placeholder =
-            "Taip ayat Bahasa Melayu untuk disemak...";
-
-        document.getElementById("inputLabel").textContent =
-            "Teks yang hendak disemak";
-
-        document.getElementById("outputLabel").textContent =
-            "Teks selepas pembetulan";
-
-        output.dir = "ltr";
-
-        mainButton.textContent = "Semak ejaan";
-    }
-
-    // Kosongkan hasil lama apabila mod berubah
-    output.value = "";
-    suggestionsBox.replaceChildren();
-
-    message.textContent = "Sila masukkan teks.";
-}
 
 async function processText() {
     const text = input.value.trim();
