@@ -178,10 +178,13 @@ input[type="submit"]:disabled {
     line-height: 1.7;
 }
 
-/* Cadangan ejaan */
-#suggestions {
-    margin-top: 16px;
-    line-height: 1.8;
+/* Mesej cadangan ejaan */
+.notice {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 1.6;
 }
 
 .suggestion {
@@ -485,9 +488,9 @@ body {
     <div id="suggestions"></div>
     <p id="message" role="status" aria-live="polite"></p>
 
-    <p class="note">
-        Cadangan ejaan berdasarkan kamus. Sila semak hasil sebelum digunakan.
-    </p>
+    <div class="notice">
+    ⓘ Cadangan ejaan berdasarkan kamus. Sila semak hasil terjemahan.
+</div>
 </main>
 <footer class="footer">
     <div class="footer-line"></div>
