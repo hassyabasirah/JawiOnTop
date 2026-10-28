@@ -643,27 +643,135 @@ body {
         font-size: 15px;
     }
 }
+    /* MENU DROPDOWN */
+.menu-panel {
+    position: absolute;
+    top: 90px;
+    right: 24px;
+
+    width: min(320px, calc(100vw - 40px));
+    padding: 12px 20px;
+
+    background: #FFFCF8;
+    border: 1px solid #E5D5C5;
+    border-radius: 18px;
+
+    box-shadow: 0 12px 35px rgba(75, 43, 35, 0.12);
+
+    z-index: 1000;
+}
+
+/* Sembunyikan menu apabila ditutup */
+.menu-panel[hidden] {
+    display: none;
+}
+
+/* SETIAP PILIHAN MENU */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px 8px;
+
+    color: var(--primary-maroon);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 19px;
+    font-weight: 500;
+
+    text-decoration: none;
+    border-bottom: 1px solid #EEE5DC;
+
+    transition: background-color 0.2s ease;
+}
+
+/* Buang garis pada pilihan terakhir */
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+/* IKON MENU */
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    min-width: 30px;
+
+    color: var(--primary-maroon);
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+}
+
+/* Kesan apabila disentuh */
+.menu-item:hover,
+.menu-item:active {
+    background-color: #F4EDE5;
+    border-radius: 10px;
+}
+
+/* PAPARAN TELEFON */
+@media (max-width: 550px) {
+    .menu-panel {
+        top: 80px;
+        right: 14px;
+
+        width: min(300px, calc(100vw - 28px));
+        padding: 10px 16px;
+
+        border-radius: 16px;
+    }
+
+    .menu-item {
+        gap: 14px;
+        padding: 15px 6px;
+        font-size: 17px;
+    }
+
+    .menu-icon {
+        width: 28px;
+        min-width: 28px;
+        font-size: 23px;
+    }
+}
 </style>
 </head>
     
 <body>
     <header class="site-header">
     <div class="header-left">
-        <div class="jawi-logo">خ</div>
+        <div class="jawi-logo">ج</div>
         <div class="brand-name">JawiOnTop</div>
     </div>
 
-    <div class="header-right">
-        <a href="#Maklumat" class="about-link">Maklumat</a>
+        <button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Buka menu"
+    aria-expanded="false"
+    aria-controls="menuPanel">
 
-        <button class="menu-button" aria-label="Buka menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
     </div>
 </header>
+<nav class="menu-panel" id="menuPanel" hidden>
 
+    <a href="#kaedah" class="menu-item">
+        <span class="menu-icon">☷</span>
+        <span>Kaedah Ejaan</span>
+    </a>
+
+    <a href="#maklumat" class="menu-item">
+        <span class="menu-icon">ⓘ</span>
+        <span>Tentang Kami</span>
+    </a>
+
+</nav>
 <main class="container">
 
     <h1 class="logo">Jawi<span>OnTop</span></h1>
@@ -869,6 +977,65 @@ async function copyText() {
         message.textContent =
             "Sila salin teks yang telah dipilih.";
     }
+}
+    const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+
+if (menuButton && menuPanel) {
+
+    menuButton.addEventListener("click", function () {
+        const isOpen = !menuPanel.hidden;
+
+        menuPanel.hidden = isOpen;
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+
+        menuButton.setAttribute(
+            "aria-label",
+            isOpen ? "Buka menu" : "Tutup menu"
+        );
+    });
+
+    // Tutup menu apabila pengguna memilih sesuatu
+    menuPanel.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            menuPanel.hidden = true;
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Buka menu"
+            );
+        });
+    });
+
+    // Tutup menu apabila pengguna menekan di luar menu
+    document.addEventListener("click", function (event) {
+        if (
+            !menuPanel.hidden &&
+            !menuPanel.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+            menuPanel.hidden = true;
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Buka menu"
+            );
+        }
+    });
 }
 </script>
 </body>
