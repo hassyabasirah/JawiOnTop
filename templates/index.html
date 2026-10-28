@@ -171,15 +171,15 @@ button.secondary:hover,
     gap: 24px;
 
     width: 100%;
-    min-height: 92px;
-    margin: 22px 0 10px;
-    padding: 16px 20px;
+    min-height: 102px;
+    margin: 16px 0 10px;
+    padding: 14px 20px;
 
     background-color: transparent;
     color: var(--primary-maroon);
 
     border: 1.5px solid var(--primary-maroon);
-    border-radius: 17px;
+    border-radius: 24px;
 
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 28px;
@@ -187,6 +187,21 @@ button.secondary:hover,
 
     cursor: pointer;
     transition: all 0.25s ease;
+}
+
+#copyButton .copy-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+#copyButton:hover {
+    background-color: var(--primary-maroon);
+    color: #FFFFFF;
+}
+
+#copyButton:active {
+    transform: scale(0.99);
 }
 
 /* IKON SALIN */
