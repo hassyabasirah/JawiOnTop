@@ -529,11 +529,128 @@ body {
         font-size: 14px;
     }
 }
+    /* HEADER JawiOnTop */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #E5DED5;
+    background: #FFFFFF;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.jawi-logo {
+    font-family: 'Amiri', serif;
+    font-size: 44px;
+    color: var(--primary-maroon);
+}
+
+.brand-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-maroon);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.about-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #55464A;
+    text-decoration: none;
+}
+
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+}
+
+.menu-button span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-maroon);
+}
+
+.hero-section {
+    text-align: center;
+    padding: 65px 20px 35px;
+}
+
+.hero-section h1 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(38px, 6vw, 68px);
+    font-weight: 700;
+    color: var(--primary-maroon);
+}
+
+.hero-section p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #77716D;
+    line-height: 1.6;
+}
+
+@media (max-width: 550px) {
+    .site-header {
+        padding: 16px 12px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .jawi-logo {
+        font-size: 36px;
+    }
+
+    .header-left {
+        gap: 8px;
+    }
+
+    .header-right {
+        gap: 14px;
+    }
+
+    .about-link {
+        font-size: 15px;
+    }
+
+    .hero-section {
+        padding: 45px 16px 25px;
+    }
+
+    .hero-section h1 {
+        font-size: 38px;
+    }
+
+    .hero-section p {
+        font-size: 15px;
+    }
+}
 </style>
 </head>
     
 <body>
-    /* HEADER */
     <header class="site-header">
     <div class="header-left">
         <div class="jawi-logo">خ</div>
@@ -543,15 +660,17 @@ body {
     <div class="header-right">
         <a href="#tentang" class="about-link">Tentang</a>
 
-        <button class="menu-button" id="menuButton"
-                aria-label="Buka menu"
-                aria-expanded="false">
+        <button class="menu-button" aria-label="Buka menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </div>
 </header>
+
+<section class="hero-section">
+    <h1>JawiOnTop.</h1>
+    <p>Tukar teks Rumi kepada tulisan Jawi dengan ringkas.</p>
 </section>
 
 <main class="container">
