@@ -354,8 +354,6 @@ body {
     <p class="subtitle">
         Jawi, but make it easy!
     </p>
-
-    
     
 <div class="translation-tabs">
     <button
@@ -403,74 +401,53 @@ body {
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 const message = document.getElementById("message");
-let currentMode = "jawi";
 const mainButton = document.getElementById("mainButton");
-const suggestionsBox = document.getElementById("suggestions");
 
+let currentMode = "jawi";
+
+// Tukar fungsi terjemahan
 function changeMode(newMode) {
     currentMode = newMode;
 
     const rumiTab = document.getElementById("rumiToJawi");
     const jawiTab = document.getElementById("jawiToRumi");
-    const spellTab = document.getElementById("spellTab");
-}[currentMode];
-    // Tukar warna butang aktif
+
+    // Tandakan butang yang aktif
     rumiTab.classList.toggle("active", newMode === "jawi");
     jawiTab.classList.toggle("active", newMode === "rumi");
-    spellTab.classList.toggle("active", newMode === "spell");
 
-    // Tetapkan arah teks dan label
     if (newMode === "jawi") {
         input.dir = "ltr";
-        input.placeholder = "Taip teks Rumi di sini...";
+        output.dir = "rtl";
 
+        input.placeholder = "Taip teks Bahasa Melayu di sini...";
         document.getElementById("inputLabel").textContent =
             "Masukkan teks Rumi";
 
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Jawi";
 
-        output.dir = "rtl";
-if (currentMode === "spell") {
         mainButton.textContent = "Tukar ke Jawi";
 
-    } else if (newMode === "rumi") {
+    } else {
         input.dir = "rtl";
-        input.placeholder = "Taip teks Jawi di sini...";
+        output.dir = "ltr";
 
+        input.placeholder = "Taip teks Jawi di sini...";
         document.getElementById("inputLabel").textContent =
             "Masukkan teks Jawi";
 
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Rumi";
 
-        output.dir = "ltr";
-
         mainButton.textContent = "Tukar ke Rumi";
-
-    } else {
-        input.dir = "ltr";
-        input.placeholder =
-            "Taip ayat Bahasa Melayu untuk disemak...";
-
-        document.getElementById("inputLabel").textContent =
-            "Teks yang hendak disemak";
-
-        document.getElementById("outputLabel").textContent =
-            "Teks selepas pembetulan";
-
-        output.dir = "ltr";
-
-        mainButton.textContent = "Semak ejaan";
     }
 
-    // Kosongkan hasil lama apabila mod berubah
     output.value = "";
-    suggestionsBox.replaceChildren();
-
     message.textContent = "Sila masukkan teks.";
 }
 
+// Proses terjemahan
 async function processText() {
     const text = input.value.trim();
 
@@ -479,105 +456,49 @@ async function processText() {
         return;
     }
 
-   const endpoint = {
-    jawi: "/convert",
-    rumi: "/reverse",
-    spell: "/spellcheck"
-}[currentMode];
+    const endpoint = currentMode === "jawi"
+        ? "/convert"
+        : "/reverse";
+
     mainButton.disabled = true;
-    suggestionsBox.replaceChildren();
-    message.textContent = "Sedang memproses...";
+    message.textContent = "Sedang menterjemah...";
 
     try {
         const response = await fetch(endpoint, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({text})
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || "Permintaan gagal.");
+            throw new Error(data.error || "Terjemahan gagal.");
         }
 
-        if (currentMode === "spell") {
-            output.value = text;
-            showSuggestions(data.suggestions || []);
-        } else {
-            output.value = data.result;
-        }
+        output.value = data.result;
+        message.textContent = "Terjemahan selesai!";
 
     } catch (error) {
         console.error(error);
         message.textContent =
-            "Tidak berjaya. Periksa sambungan dan log server.";
+            "Terjemahan gagal. Sila cuba lagi.";
+
     } finally {
         mainButton.disabled = false;
     }
 }
 
-function showSuggestions(items) {
-    suggestionsBox.replaceChildren();
-
-    if (items.length === 0) {
-        message.textContent =
-            "Tiada perkataan mencurigakan ditemui dalam kamus. Ini bukan jaminan semua ejaan betul.";
-        return;
-    }
-
-    message.textContent =
-        "Perkataan yang mungkin perlu disemak. Klik cadangan untuk menggantikannya:";
-
-    items.forEach(item => {
-        const section = document.createElement("div");
-        const title = document.createElement("strong");
-        title.textContent = item.word + ": ";
-        section.appendChild(title);
-
-        item.suggestions.forEach(candidate => {
-            const button = document.createElement("button");
-            button.className = "suggestion";
-            button.type = "button";
-            button.textContent = candidate;
-
-            button.addEventListener("click", () => {
-                replaceWord(item.word, candidate);
-            });
-
-            section.appendChild(button);
-        });
-
-        suggestionsBox.appendChild(section);
-    });
-}
-
-function replaceWord(original, replacement) {
-    const escaped = original.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp("\\b" + escaped + "\\b", "gi");
-
-    input.value = input.value.replace(pattern, match => {
-        if (match === match.toUpperCase()) {
-            return replacement.toUpperCase();
-        }
-        if (match[0] === match[0].toUpperCase()) {
-            return replacement[0].toUpperCase() + replacement.slice(1);
-        }
-        return replacement;
-    });
-
-    output.value = input.value;
-    message.textContent =
-        "Cadangan digunakan. Tekan Semak ejaan sekali lagi untuk menyemak semula.";
-}
-
+// Padam teks
 function clearText() {
     input.value = "";
     output.value = "";
-    suggestionsBox.replaceChildren();
     message.textContent = "Ruangan telah dikosongkan.";
 }
 
+// Salin hasil terjemahan
 async function copyText() {
     if (!output.value) {
         message.textContent = "Tiada teks untuk disalin.";
@@ -587,11 +508,13 @@ async function copyText() {
     try {
         await navigator.clipboard.writeText(output.value);
         message.textContent = "Teks berjaya disalin!";
-    } catch {
+
+    } catch (error) {
         output.focus();
         output.select();
+
         message.textContent =
-            "Teks dipilih. Salin menggunakan fungsi Copy pada peranti.";
+            "Sila salin teks yang telah dipilih.";
     }
 }
 </script>
