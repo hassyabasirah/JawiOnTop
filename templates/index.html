@@ -99,19 +99,25 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(107, 45, 48, 0.10);
 }
 
-/* Ruang memasukkan teks */
+/* Ruang memasukkan teks Rumi */
 textarea {
     min-height: 130px;
     resize: vertical;
-    font-size: 17px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-main);
 }
 
 /* Hasil tulisan Jawi */
 #output {
     direction: rtl;
     text-align: right;
-    font-size: 25px;
-    line-height: 1.9;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.8;
     background-color: #FCFAF7;
     overflow-wrap: anywhere;
 }
@@ -229,12 +235,12 @@ a:hover {
     }
 
     textarea {
-        font-size: 16px;
-    }
+    font-size: 16px;
+}
 
-    #output {
-        font-size: 22px;
-    }
+#output {
+    font-size: 20px;
+}
 
     button,
     .btn,
@@ -354,34 +360,6 @@ body {
     <p class="subtitle">
         Jawi, but make it easy!
     </p>
-
-  <label>Pilih fungsi</label>
-    
-<div class="translation-tabs">
-    <button
-        type="button"
-        class="translation-tab active"
-        id="rumiToJawi"
-        onclick="changeMode('jawi')">
-        Rumi → Jawi
-    </button>
-
-    <button
-        type="button"
-        class="translation-tab"
-        id="jawiToRumi"
-        onclick="changeMode('rumi')">
-        Jawi → Rumi
-    </button>
-</div>
-
-<button
-    type="button"
-    class="spell-tab"
-    id="spellTab"
-    onclick="changeMode('spell')">
-    Semak ejaan Rumi
-</button>
 
     <label for="input" id="inputLabel">Masukkan teks Rumi</label>
     <textarea id="input"
