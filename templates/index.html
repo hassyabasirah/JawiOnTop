@@ -381,6 +381,62 @@ body {
 #mainButton:active {
     transform: translateY(0);
 }
+    .footer {
+    width: 100%;
+    max-width: 900px;
+    margin: 45px auto 10px;
+    padding: 25px 20px 15px;
+    text-align: center;
+}
+
+.footer-line {
+    width: 100%;
+    height: 1px;
+    background-color: #E2DED8;
+    margin-bottom: 42px;
+}
+
+.footer-logo {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #5B1720;
+    line-height: 1.3;
+}
+
+.footer-logo span {
+    color: #B18A60;
+}
+
+.footer-description {
+    margin: 8px 0 0;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 18px;
+    color: #77716E;
+    line-height: 1.6;
+}
+
+/* Paparan telefon */
+@media (max-width: 550px) {
+    .footer {
+        margin-top: 30px;
+        padding: 20px 5px 10px;
+    }
+
+    .footer-line {
+        margin-bottom: 32px;
+    }
+
+    .footer-logo {
+        font-size: 30px;
+    }
+
+    .footer-description {
+        font-size: 14px;
+    }
+}
 </style>
 </head>
     
@@ -435,6 +491,15 @@ body {
         Cadangan ejaan berdasarkan kamus. Sila semak hasil sebelum digunakan.
     </p>
 </main>
+<footer class="footer">
+    <div class="footer-line"></div>
+
+    <h2 class="footer-logo">Jawi<span>OnTop</span></h2>
+
+    <p class="footer-description">
+        Dibangunkan untuk memudahkan pembelajaran Jawi.
+    </p>
+</footer>
 
 <script>
 const input = document.getElementById("input");
