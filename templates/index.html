@@ -99,25 +99,19 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(107, 45, 48, 0.10);
 }
 
-/* Ruang memasukkan teks Rumi */
+/* Ruang memasukkan teks */
 textarea {
     min-height: 130px;
     resize: vertical;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-main);
+    font-size: 17px;
 }
 
 /* Hasil tulisan Jawi */
 #output {
     direction: rtl;
     text-align: right;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.8;
+    font-size: 25px;
+    line-height: 1.9;
     background-color: #FCFAF7;
     overflow-wrap: anywhere;
 }
@@ -235,17 +229,22 @@ a:hover {
     }
 
     textarea {
-    font-size: 16px;
-}
+        font-size: 16px;
+    }
 
-#output {
-    font-size: 20px;
-}
+    #output {
+        font-size: 22px;
+    }
 
     button,
     .btn,
     input[type="submit"] {
         margin-right: 3px;
+    }
+
+    .translation-tab {
+        padding: 12px 4px;
+        font-size: 12px;
     }
 }
 
@@ -356,6 +355,34 @@ body {
         Jawi, but make it easy!
     </p>
 
+  <label>Pilih fungsi</label>
+    
+<div class="translation-tabs">
+    <button
+        type="button"
+        class="translation-tab active"
+        id="rumiToJawi"
+        onclick="changeMode('jawi')">
+        Rumi → Jawi
+    </button>
+
+    <button
+        type="button"
+        class="translation-tab"
+        id="jawiToRumi"
+        onclick="changeMode('rumi')">
+        Jawi → Rumi
+    </button>
+</div>
+
+<button
+    type="button"
+    class="spell-tab"
+    id="spellTab"
+    onclick="changeMode('spell')">
+    Semak ejaan Rumi
+</button>
+
     <label for="input" id="inputLabel">Masukkan teks Rumi</label>
     <textarea id="input"
         placeholder="Taip teks Bahasa Melayu di sini..."></textarea>
@@ -388,6 +415,70 @@ const message = document.getElementById("message");
 let currentMode = "jawi";
 const mainButton = document.getElementById("mainButton");
 const suggestionsBox = document.getElementById("suggestions");
+
+function changeMode(newMode) {
+    currentMode = newMode;
+
+    const rumiTab = document.getElementById("rumiToJawi");
+    const jawiTab = document.getElementById("jawiToRumi");
+    const spellTab = document.getElementById("spellTab");
+}[currentMode];
+    // Tukar warna butang aktif
+    rumiTab.classList.toggle("active", newMode === "jawi");
+    jawiTab.classList.toggle("active", newMode === "rumi");
+    spellTab.classList.toggle("active", newMode === "spell");
+
+    // Tetapkan arah teks dan label
+    if (newMode === "jawi") {
+        input.dir = "ltr";
+        input.placeholder = "Taip teks Rumi di sini...";
+
+        document.getElementById("inputLabel").textContent =
+            "Masukkan teks Rumi";
+
+        document.getElementById("outputLabel").textContent =
+            "Hasil tulisan Jawi";
+
+        output.dir = "rtl";
+if (currentMode === "spell") {
+        mainButton.textContent = "Tukar ke Jawi";
+
+    } else if (newMode === "rumi") {
+        input.dir = "rtl";
+        input.placeholder = "Taip teks Jawi di sini...";
+
+        document.getElementById("inputLabel").textContent =
+            "Masukkan teks Jawi";
+
+        document.getElementById("outputLabel").textContent =
+            "Hasil tulisan Rumi";
+
+        output.dir = "ltr";
+
+        mainButton.textContent = "Tukar ke Rumi";
+
+    } else {
+        input.dir = "ltr";
+        input.placeholder =
+            "Taip ayat Bahasa Melayu untuk disemak...";
+
+        document.getElementById("inputLabel").textContent =
+            "Teks yang hendak disemak";
+
+        document.getElementById("outputLabel").textContent =
+            "Teks selepas pembetulan";
+
+        output.dir = "ltr";
+
+        mainButton.textContent = "Semak ejaan";
+    }
+
+    // Kosongkan hasil lama apabila mod berubah
+    output.value = "";
+    suggestionsBox.replaceChildren();
+
+    message.textContent = "Sila masukkan teks.";
+}
 
 async function processText() {
     const text = input.value.trim();
