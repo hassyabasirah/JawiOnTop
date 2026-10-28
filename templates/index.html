@@ -39,7 +39,7 @@ body {
 
 /* Bekas utama */
 .container {
-    width: calc(100% - 40px);
+    width: 100%;
     max-width: 700px;
     margin: 20px auto;
     padding: 28px;
@@ -116,8 +116,6 @@ color: var(--text-main);
 direction: rtl;
 text-align: right;
 font-family: "Noto Naskh Arabic", "Amiri", serif;
-width: 100%;
-min-height: 150px;
 font-size: 28px;
 line-height: 2;
 background-color: #FCFAF7;
@@ -287,13 +285,12 @@ a:hover {
         padding: 6px;
     }
 
-  .container {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-    padding: 20px 16px;
-    border-radius: 14px;
-}
+    .container {
+        margin: 10px auto;
+        padding: 20px 16px;
+        border-radius: 14px;
+    }
+
     h1 {
         font-size: 27px;
     }
@@ -744,82 +741,6 @@ body {
     display: block;
     flex-shrink: 0;
 }
-    /* HALAMAN TENTANG KAMI */
-.about-section {
-    max-width: 850px;
-    margin: 35px auto;
-    padding: 30px;
-    background: #FFFCF8;
-    border: 1px solid #E6DFD5;
-    border-radius: 22px;
-    color: var(--text-main);
-}
-
-.about-section[hidden] {
-    display: none;
-}
-
-.about-section h2 {
-    margin-bottom: 15px;
-    color: var(--primary-maroon);
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 30px;
-    text-align: center;
-}
-
-.about-intro {
-    margin-bottom: 25px;
-    color: #716B65;
-    font-size: 16px;
-    line-height: 1.8;
-    text-align: center;
-}
-
-.about-card {
-    margin-bottom: 15px;
-    padding: 20px;
-    background: #F4EDE5;
-    border-radius: 15px;
-}
-
-.about-card h3 {
-    margin: 0 0 8px;
-    color: var(--primary-maroon);
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 19px;
-}
-
-.about-card p {
-    margin: 0;
-    color: #716B65;
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-.back-home {
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-    padding: 15px;
-    background: var(--primary-maroon);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-@media (max-width: 550px) {
-    .about-section {
-        margin: 20px 12px;
-        padding: 20px;
-    }
-
-    .about-section h2 {
-        font-size: 25px;
-    }
-}
-
 </style>
 </head>
     
@@ -843,49 +764,11 @@ body {
 
 </button>
     </div>
-<section id="tentangKami" class="about-section" hidden>
-
-    <h2>Tentang JawiOnTop</h2>
-
-    <p class="about-intro">
-        JawiOnTop dibangunkan untuk memudahkan pembelajaran
-        tulisan Jawi melalui platform digital yang ringkas
-        dan mesra pengguna.
-    </p>
-
-    <div class="about-card">
-        <h3>Matlamat Kami</h3>
-        <p>
-            Membantu pengguna mempelajari dan menggunakan
-            tulisan Jawi dengan lebih mudah.
-        </p>
-    </div>
-
-    <div class="about-card">
-        <h3>Ciri-ciri Utama</h3>
-        <p>
-            Terjemahan Rumi ke Jawi, Jawi ke Rumi dan
-            panduan kaedah ejaan Jawi.
-        </p>
-    </div>
-
-    <div class="about-card">
-        <h3>Pengguna Sasaran</h3>
-        <p>
-            Sesuai untuk pelajar, guru dan orang awam
-            yang ingin mempelajari tulisan Jawi.
-        </p>
-    </div>
-
-    <button type="button" id="backToHome" class="back-home">
-        ← Kembali ke JawiOnTop
-    </button>
-
-</section>
+</header>
 <nav class="menu-panel" id="menuPanel" hidden>
 
     <a href="#kaedah" class="menu-item">
-        <span class="menu-icon">
+        <<span class="menu-icon">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="28"
@@ -907,10 +790,11 @@ body {
         <span>Kaedah Ejaan</span>
     </a>
 
-   <a href="#tentangKami" id="aboutLink" class="menu-item">
-    <span class="menu-icon">ⓘ</span>
-    <span>Tentang Kami</span>
-</a>
+    <a href="#maklumat" class="menu-item">
+        <span class="menu-icon">ⓘ</span>
+        <span>Tentang Kami</span>
+    </a>
+
 </nav>
 <main class="container">
 
@@ -1177,36 +1061,6 @@ if (menuButton && menuPanel) {
         }
     });
 }
-    const aboutLink = document.getElementById("aboutLink");
-const aboutSection = document.getElementById("tentangKami");
-const mainContainer = document.querySelector("main.container");
-const backToHome = document.getElementById("backToHome");
-
-if (aboutLink && aboutSection && mainContainer && backToHome) {
-
-    aboutLink.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        mainContainer.hidden = true;
-        aboutSection.hidden = false;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-
-    backToHome.addEventListener("click", function () {
-        aboutSection.hidden = true;
-        mainContainer.hidden = false;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-}
-
 </script>
 </body>
 </html>
