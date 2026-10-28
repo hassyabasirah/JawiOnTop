@@ -342,44 +342,70 @@ body {
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 const message = document.getElementById("message");
-const mode = document.getElementById("mode");
+let currentMode = "jawi";
 const mainButton = document.getElementById("mainButton");
 const suggestionsBox = document.getElementById("suggestions");
 
-function updateMode() {
-    suggestionsBox.replaceChildren();
-    output.value = "";
+function changeMode(newMode) {
+    currentMode = newMode;
 
-    if (mode.value === "jawi") {
+    const rumiTab = document.getElementById("rumiToJawi");
+    const jawiTab = document.getElementById("jawiToRumi");
+    const spellTab = document.getElementById("spellTab");
+
+    // Tukar warna butang aktif
+    rumiTab.classList.toggle("active", newMode === "jawi");
+    jawiTab.classList.toggle("active", newMode === "rumi");
+    spellTab.classList.toggle("active", newMode === "spell");
+
+    // Tetapkan arah teks dan label
+    if (newMode === "jawi") {
         input.dir = "ltr";
         input.placeholder = "Taip teks Rumi di sini...";
+
         document.getElementById("inputLabel").textContent =
             "Masukkan teks Rumi";
+
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Jawi";
+
         output.dir = "rtl";
+
         mainButton.textContent = "Tukar ke Jawi";
 
-    } else if (mode.value === "rumi") {
+    } else if (newMode === "rumi") {
         input.dir = "rtl";
-        input.placeholder = "اكتب النص الجاوي هنا";
+        input.placeholder = "Taip teks Jawi di sini...";
+
         document.getElementById("inputLabel").textContent =
             "Masukkan teks Jawi";
+
         document.getElementById("outputLabel").textContent =
             "Hasil tulisan Rumi";
+
         output.dir = "ltr";
+
         mainButton.textContent = "Tukar ke Rumi";
 
     } else {
         input.dir = "ltr";
-        input.placeholder = "Taip ayat Bahasa Melayu untuk disemak...";
+        input.placeholder =
+            "Taip ayat Bahasa Melayu untuk disemak...";
+
         document.getElementById("inputLabel").textContent =
             "Teks yang hendak disemak";
+
         document.getElementById("outputLabel").textContent =
             "Teks selepas pembetulan";
+
         output.dir = "ltr";
+
         mainButton.textContent = "Semak ejaan";
     }
+
+    // Kosongkan hasil lama apabila mod berubah
+    output.value = "";
+    suggestionsBox.replaceChildren();
 
     message.textContent = "Sila masukkan teks.";
 }
@@ -392,12 +418,11 @@ async function processText() {
         return;
     }
 
-    const endpoint = {
-        jawi: "/convert",
-        rumi: "/reverse",
-        spell: "/spellcheck"
-    }[mode.value];
-
+   const endpoint = {
+    jawi: "/convert",
+    rumi: "/reverse",
+    spell: "/spellcheck"
+}[currentMode];
     mainButton.disabled = true;
     suggestionsBox.replaceChildren();
     message.textContent = "Sedang memproses...";
@@ -415,7 +440,7 @@ async function processText() {
             throw new Error(data.error || "Permintaan gagal.");
         }
 
-        if (mode.value === "spell") {
+        if (currentMode === "spell") {
             output.value = text;
             showSuggestions(data.suggestions || []);
         } else {
