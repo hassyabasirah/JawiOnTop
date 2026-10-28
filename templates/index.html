@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -100,20 +100,23 @@ input[type="text"]:focus {
 }
 
 /* Ruang memasukkan teks */
-textarea {
-    min-height: 130px;
-    resize: vertical;
-    font-size: 17px;
+#input {
+min-height: 130px;
+resize: vertical;
+font-family: 'Inter', Arial, sans-serif;
+font-size: 17px;
+line-height: 1.8;
+color: var(--text-main);
 }
-
 /* Hasil tulisan Jawi */
 #output {
-    direction: rtl;
-    text-align: right;
-    font-size: 25px;
-    line-height: 1.9;
-    background-color: #FCFAF7;
-    overflow-wrap: anywhere;
+direction: rtl;
+text-align: right;
+font-family: "Noto Naskh Arabic", "Amiri", serif;
+font-size: 28px;
+line-height: 2;
+background-color: #FCFAF7;
+overflow-wrap: anywhere;
 }
 
 /* Butang utama */
@@ -233,9 +236,10 @@ a:hover {
     }
 
     #output {
-        font-size: 22px;
-    }
-
+    font-family: "Noto Naskh Arabic", "Amiri", serif;
+    font-size: 25px;
+    line-height: 1.9;
+}
     button,
     .btn,
     input[type="submit"] {
