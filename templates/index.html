@@ -342,6 +342,38 @@ body {
     background-color: var(--soft-beige);
     color: var(--primary-maroon);
 }
+    /* Butang terjemahan utama */
+#mainButton {
+    display: block;
+    width: 100%;
+    margin: 16px 0 10px;
+    padding: 14px 20px;
+
+    background-color: var(--primary-maroon);
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 12px;
+
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Kesan apabila tetikus berada di atas butang */
+#mainButton:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(107, 45, 48, 0.18);
+}
+
+/* Kesan apabila butang ditekan */
+#mainButton:active {
+    transform: translateY(0);
+}
 </style>
 </head>
     
