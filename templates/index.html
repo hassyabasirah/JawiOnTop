@@ -741,6 +741,78 @@ body {
     display: block;
     flex-shrink: 0;
 }
+    /* TENTANG KAMI */
+
+.about-section {
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px 25px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(44, 42, 41, 0.06);
+    text-align: center;
+    scroll-margin-top: 20px;
+}
+
+.about-section h2 {
+    color: var(--primary-maroon);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.about-description {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.about-badge {
+    display: inline-block;
+    margin: 15px 0 20px;
+    padding: 9px 20px;
+    background: var(--soft-beige);
+    color: var(--primary-maroon);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.team-member {
+    padding: 13px;
+    background: #FCFAF7;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.team-member span {
+    display: block;
+    color: var(--primary-maroon);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: 22px 16px;
+    }
+
+    .team-list {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
     
@@ -763,16 +835,14 @@ body {
     <span></span>
 
 </button>
-    </div>
 </header>
 <nav class="menu-panel" id="menuPanel" hidden>
 
-    <a href="#kaedah" class="menu-item">
-         <a href="#maklumat" class="menu-item">
+    <nav class="menu-panel" id="menuPanel" hidden>
+    <a href="#maklumat" class="menu-item">
         <span class="menu-icon">ⓘ</span>
         <span>Tentang Kami</span>
     </a>
-
 </nav>
 <main class="container">
 
@@ -850,6 +920,67 @@ body {
     ⓘ   Cadangan ejaan berdasarkan kamus. Sila semak hasil terjemahan.
 </div>
 </main>
+    <section class="about-section" id="maklumat">
+
+    <h2>Tentang Kami</h2>
+
+    <p class="about-description">
+        JawiOnTop merupakan platform pembelajaran digital
+        yang dibangunkan untuk memudahkan pembelajaran
+        dan penukaran tulisan Rumi dan Jawi.
+    </p>
+
+    <div class="about-badge">
+        DPULI 2026/2027
+    </div>
+
+    <h3>Ahli Kumpulan</h3>
+
+    <div class="team-list">
+
+        <div class="team-member">
+            <span>01.</span>
+            Abdul Muiz bin Hj Abdul Mutalip
+        </div>
+
+        <div class="team-member">
+            <span>02.</span>
+            Muhamad Nurshafif bin Tajul Ariffin
+        </div>
+
+        <div class="team-member">
+            <span>03.</span>
+            Norqamarina Baha
+        </div>
+
+        <div class="team-member">
+            <span>04.</span>
+            Hassya Basirah binti Haris
+        </div>
+
+        <div class="team-member">
+            <span>05.</span>
+            Siti Wahidah binti Muhammad
+        </div>
+
+        <div class="team-member">
+            <span>06.</span>
+            Nurul Murfiqah Mahari
+        </div>
+
+        <div class="team-member">
+            <span>07.</span>
+            Aida Farhana binti Shamsul
+        </div>
+
+        <div class="team-member">
+            <span>08.</span>
+            Nur Ashaqina binti Johari
+        </div>
+
+    </div>
+
+</section>
 <footer class="footer">
     <div class="footer-line"></div>
 
