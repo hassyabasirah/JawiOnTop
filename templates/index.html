@@ -666,7 +666,7 @@ body {
 
 /* Sembunyikan menu apabila ditutup */
 .menu-panel[hidden] {
-    display: none;
+    display: none !important;
 }
 
 /* SETIAP PILIHAN MENU */
@@ -902,21 +902,6 @@ function showHome() {
     </a>
 
 </nav>
-<nav class="menu-panel" id="menuPanel" hidden>
-
-    <a href="#maklumat" class="menu-item">
-        <span class="menu-icon">ⓘ</span>
-        <span>Tentang Kami</span>
-    </a>
-
-</nav>
-
-    <a href="#maklumat" class="menu-item">
-        <span class="menu-icon">ⓘ</span>
-        <span>Tentang Kami</span>
-    </a>
-
-</nav>
 <main class="container" id="utama">
 
     <h1 class="logo">Jawi<span>OnTop</span></h1>
@@ -993,10 +978,9 @@ function showHome() {
     ⓘ   Cadangan ejaan berdasarkan kamus. Sila semak hasil terjemahan.
 </div>
 </main>
-    <div id="aboutPage" class="about-page" hidden>
+   <div id="aboutPage" class="about-page" hidden>
 
-  <section class="about-section" id="maklumat" hidden>
-
+<section class="about-section" id="maklumat">
         <h2>Tentang Kami</h2>
 
         <p class="about-description">
@@ -1115,25 +1099,6 @@ aboutLink.addEventListener("click", function(event) {
     window.scrollTo(0, 0);
 
 });
-
-
-// KEMBALI KE HALAMAN UTAMA MELALUI LOGO
-
-homeLink.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    aboutSection.hidden = true;
-    mainPage.hidden = false;
-
-    menuPanel.hidden = true;
-
-    menuButton.setAttribute("aria-expanded", "false");
-
-    window.scrollTo(0, 0);
-
-});
-
 
 // TUTUP MENU APABILA KLIK DI LUAR
 
