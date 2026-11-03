@@ -1045,6 +1045,142 @@ const message = document.getElementById("message");
 
 const aboutPage = document.getElementById("aboutPage");
 const mainPage = document.getElementById("utama");
+
+// ELEMEN TERJEMAHAN
+const input = document.getElementById("input");
+const output = document.getElementById("output");
+const message = document.getElementById("message");
+const mainButton = document.getElementById("mainButton");
+
+let currentMode = "jawi";
+
+
+// TUKAR MOD RUMI-JAWI DAN JAWI-RUMI
+function changeMode(newMode) {
+
+    currentMode = newMode;
+
+    const rumiTab = document.getElementById("rumiToJawi");
+    const jawiTab = document.getElementById("jawiToRumi");
+
+    rumiTab.classList.toggle("active", newMode === "jawi");
+    jawiTab.classList.toggle("active", newMode === "rumi");
+
+    if (newMode === "jawi") {
+
+        input.dir = "ltr";
+        output.dir = "rtl";
+
+        input.placeholder = "Taip teks Bahasa Melayu di sini...";
+        document.getElementById("inputLabel").textContent = "Masukkan teks Rumi";
+        document.getElementById("outputLabel").textContent = "Hasil tulisan Jawi";
+        document.getElementById("mainButtonText").textContent = "Tukar ke Jawi";
+
+    } else {
+
+        input.dir = "rtl";
+        output.dir = "ltr";
+
+        input.placeholder = "Taip teks Jawi di sini...";
+        document.getElementById("inputLabel").textContent = "Masukkan teks Jawi";
+        document.getElementById("outputLabel").textContent = "Hasil tulisan Rumi";
+        document.getElementById("mainButtonText").textContent = "Tukar ke Rumi";
+    }
+
+    input.value = "";
+    output.value = "";
+    message.textContent = "Sila masukkan teks.";
+}
+
+
+// FUNGSI UTAMA TERJEMAHAN
+async function processText() {
+
+    const text = input.value.trim();
+
+    if (!text) {
+        message.textContent = "Sila masukkan teks dahulu.";
+        return;
+    }
+
+    const endpoint = currentMode === "jawi"
+        ? "/convert"
+        : "/reverse";
+
+    mainButton.disabled = true;
+    message.textContent = "Sedang menterjemah...";
+
+    try {
+
+        const response = await fetch(endpoint, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                text: text
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Terjemahan gagal.");
+        }
+
+        output.value = data.result;
+        message.textContent = "Terjemahan selesai!";
+
+    } catch (error) {
+
+        console.error(error);
+        message.textContent = "Terjemahan gagal. Sila cuba lagi.";
+
+    } finally {
+
+        mainButton.disabled = false;
+
+    }
+}
+
+
+// FUNGSI PADAM
+function clearText() {
+
+    input.value = "";
+    output.value = "";
+
+    message.textContent = "Ruangan telah dikosongkan.";
+
+}
+
+
+// FUNGSI SALIN
+async function copyText() {
+
+    if (!output.value) {
+        message.textContent = "Tiada teks untuk disalin.";
+        return;
+    }
+
+    try {
+
+        await navigator.clipboard.writeText(output.value);
+
+        message.textContent = "Teks berjaya disalin!";
+
+    } catch (error) {
+
+        output.focus();
+        output.select();
+
+        message.textContent = "Sila salin teks yang telah dipilih.";
+
+    }
+
+}
     
 // ELEMEN MENU DAN HALAMAN
 const menuButton = document.getElementById("menuButton");
