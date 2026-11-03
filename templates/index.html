@@ -1054,30 +1054,16 @@ function showHome() {
 
 <script>
 
-    const aboutPage = document.getElementById("aboutPage");
-const mainPage = document.querySelector("main");
-const menuButton = document.getElementById("menuButton");
-const menuPanel = document.getElementById("menuPanel");
-
-menuPanel.querySelector('a[href="#maklumat"]')
-.addEventListener("click", function(e) {
-
-    e.preventDefault();
-
-    mainPage.hidden = true;
-    aboutPage.hidden = false;
-
-    menuPanel.hidden = true;
-    menuButton.setAttribute("aria-expanded", "false");
-
-    window.scrollTo(0, 0);
-});
-    
-const input = document.getElementById("input");
 const output = document.getElementById("output");
 const message = document.getElementById("message");
-const mainButton = document.getElementById("mainButton");
 
+const aboutPage = document.getElementById("aboutPage");
+const mainPage = document.getElementById("utama");
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+const aboutLink = document.getElementById("aboutLink");
+const homeLink = document.querySelector(".header-brand");
+    
 let currentMode = "jawi";
 
 // Tukar fungsi terjemahan
