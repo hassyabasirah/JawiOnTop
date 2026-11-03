@@ -113,15 +113,19 @@ color: var(--text-main);
 }
 /* Hasil tulisan Jawi */
 #output {
-direction: rtl;
-text-align: right;
-font-family: "Noto Naskh Arabic", "Amiri", serif;
-font-size: 28px;
-line-height: 2;
-background-color: #FCFAF7;
-overflow-wrap: anywhere;
+    direction: rtl;
+    text-align: right;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: normal;
+    background: #f8faf9;
 }
-
+#output::placeholder {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: normal;
+    color: #999;
+}
 /* Butang utama */
 button,
 .btn,
