@@ -813,6 +813,36 @@ body {
         grid-template-columns: 1fr;
     }
 }
+    .about-section {
+    display: none;
+}
+
+.about-section.active {
+    display: block;
+}
+
+.container.hidden {
+    display: none;
+}
+    function showAbout() {
+
+    document.getElementById("utama").classList.add("hidden");
+
+    document.getElementById("maklumat").classList.add("active");
+
+    document.getElementById("menuPanel").hidden = true;
+
+    window.scrollTo(0, 0);
+}
+
+function showHome() {
+
+    document.getElementById("utama").classList.remove("hidden");
+
+    document.getElementById("maklumat").classList.remove("active");
+
+    window.scrollTo(0, 0);
+}
 </style>
 </head>
     
