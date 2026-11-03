@@ -843,6 +843,15 @@ function showHome() {
 
     window.scrollTo(0, 0);
 }
+    .about-page {
+    width: 100%;
+    min-height: 70vh;
+    padding: 30px 15px;
+}
+
+.about-page[hidden] {
+    display: none;
+}
 </style>
 </head>
     
@@ -964,20 +973,21 @@ function showHome() {
     ⓘ   Cadangan ejaan berdasarkan kamus. Sila semak hasil terjemahan.
 </div>
 </main>
+    <div id="aboutPage" class="about-page" hidden>
+
     <section class="about-section" id="maklumat">
 
-    <h2>Tentang Kami</h2>
+        <h2>Tentang Kami</h2>
 
-    <p class="about-description">
-        JawiOnTop merupakan platform pembelajaran digital
-        yang dibangunkan untuk memudahkan pembelajaran
-        dan penukaran tulisan Rumi dan Jawi.
-    </p>
+        <p class="about-description">
+            JawiOnTop merupakan platform pembelajaran digital
+            yang dibangunkan untuk memudahkan pembelajaran
+            dan penukaran tulisan Rumi dan Jawi.
+        </p>
 
-    <div class="about-badge">
-        DPULI 2026/2027
-    </div>
-
+        <div class="about-badge">
+            DPULI 2026/2027
+        </div>
     <h3>Ahli Kumpulan</h3>
 
     <div class="team-list">
@@ -1036,6 +1046,26 @@ function showHome() {
 </footer>
 
 <script>
+
+    const aboutPage = document.getElementById("aboutPage");
+const mainPage = document.querySelector("main");
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+
+menuPanel.querySelector('a[href="#maklumat"]')
+.addEventListener("click", function(e) {
+
+    e.preventDefault();
+
+    mainPage.hidden = true;
+    aboutPage.hidden = false;
+
+    menuPanel.hidden = true;
+    menuButton.setAttribute("aria-expanded", "false");
+
+    window.scrollTo(0, 0);
+});
+    
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 const message = document.getElementById("message");
