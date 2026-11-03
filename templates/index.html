@@ -817,26 +817,31 @@ body {
 </head>
     
 <body>
+
+<header class="site-header">
+
     <div class="header-left">
-    <a href="#utama" class="header-brand">
-        <div class="jawi-logo">ج</div>
-        <div class="brand-name">JawiOnTop</div>
-    </a>
-</div>
+        <a href="#utama" class="header-brand">
+            <span class="jawi-logo">ج</span>
+            <span class="brand-name">JawiOnTop</span>
+        </a>
+    </div>
 
-        <button
-    class="menu-button"
-    id="menuButton"
-    aria-label="Buka menu"
-    aria-expanded="false"
-    aria-controls="menuPanel">
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Buka menu"
+        aria-expanded="false"
+        aria-controls="menuPanel">
 
-    <span></span>
-    <span></span>
-    <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
-</button>
+    </button>
+
 </header>
+
 <nav class="menu-panel" id="menuPanel" hidden>
 
     <a href="#maklumat" class="menu-item">
@@ -845,7 +850,15 @@ body {
     </a>
 
 </nav>
-<main class="container">
+<nav class="menu-panel" id="menuPanel" hidden>
+
+    <a href="#maklumat" class="menu-item">
+        <span class="menu-icon">ⓘ</span>
+        <span>Tentang Kami</span>
+    </a>
+
+</nav>
+<main class="container" id="utama">
 
     <h1 class="logo">Jawi<span>OnTop</span></h1>
 
