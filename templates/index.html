@@ -849,8 +849,8 @@ function showHome() {
     padding: 30px 15px;
 }
 
-.about-page[hidden] {
-    display: none;
+.about-section[hidden] {
+    display: none !important;
 }
 </style>
 </head>
@@ -860,10 +860,15 @@ function showHome() {
 <header class="site-header">
 
     <div class="header-left">
+
         <a href="#utama" class="header-brand">
+
             <span class="jawi-logo">ج</span>
+
             <span class="brand-name">JawiOnTop</span>
+
         </a>
+
     </div>
 
     <button
@@ -883,9 +888,14 @@ function showHome() {
 
 <nav class="menu-panel" id="menuPanel" hidden>
 
-    <a href="#maklumat" class="menu-item">
+    <a href="#maklumat"
+       class="menu-item"
+       id="aboutLink">
+
         <span class="menu-icon">ⓘ</span>
+
         <span>Tentang Kami</span>
+
     </a>
 
 </nav>
@@ -982,7 +992,7 @@ function showHome() {
 </main>
     <div id="aboutPage" class="about-page" hidden>
 
-    <section class="about-section" id="maklumat">
+  <section class="about-section" id="maklumat" hidden>
 
         <h2>Tentang Kami</h2>
 
@@ -1059,129 +1069,86 @@ const message = document.getElementById("message");
 
 const aboutPage = document.getElementById("aboutPage");
 const mainPage = document.getElementById("utama");
+
+    // ELEMEN MENU DAN HALAMAN
+
 const menuButton = document.getElementById("menuButton");
 const menuPanel = document.getElementById("menuPanel");
+
+const mainPage = document.getElementById("utama");
+const aboutSection = document.getElementById("maklumat");
+
 const aboutLink = document.getElementById("aboutLink");
 const homeLink = document.querySelector(".header-brand");
-    
-let currentMode = "jawi";
 
-// Tukar fungsi terjemahan
-function changeMode(newMode) {
-    currentMode = newMode;
 
-    const rumiTab = document.getElementById("rumiToJawi");
-    const jawiTab = document.getElementById("jawiToRumi");
+// BUKA DAN TUTUP MENU
 
-    // Tandakan butang yang aktif
-    rumiTab.classList.toggle("active", newMode === "jawi");
-    jawiTab.classList.toggle("active", newMode === "rumi");
+menuButton.addEventListener("click", function() {
 
-    if (newMode === "jawi") {
-        input.dir = "ltr";
-        output.dir = "rtl";
+    menuPanel.hidden = !menuPanel.hidden;
 
-        input.placeholder = "Taip teks Bahasa Melayu di sini...";
-        document.getElementById("inputLabel").textContent =
-            "Masukkan teks Rumi";
+    menuButton.setAttribute(
+        "aria-expanded",
+        String(!menuPanel.hidden)
+    );
 
-        document.getElementById("outputLabel").textContent =
-            "Hasil tulisan Jawi";
+});
 
-      document.getElementById("mainButtonText").textContent = "Tukar ke Jawi";
 
-    } else {
-        input.dir = "rtl";
-        output.dir = "ltr";
+// BUKA TENTANG KAMI
 
-        input.placeholder = "Taip teks Jawi di sini...";
-        document.getElementById("inputLabel").textContent =
-            "Masukkan teks Jawi";
+aboutLink.addEventListener("click", function(event) {
 
-        document.getElementById("outputLabel").textContent =
-            "Hasil tulisan Rumi";
+    event.preventDefault();
 
-        document.getElementById("mainButtonText").textContent = "Tukar ke Rumi";
+    mainPage.hidden = true;
+    aboutSection.hidden = false;
+
+    menuPanel.hidden = true;
+
+    menuButton.setAttribute("aria-expanded", "false");
+
+    window.scrollTo(0, 0);
+
+});
+
+
+// KEMBALI KE HALAMAN UTAMA MELALUI LOGO
+
+homeLink.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    aboutSection.hidden = true;
+    mainPage.hidden = false;
+
+    menuPanel.hidden = true;
+
+    menuButton.setAttribute("aria-expanded", "false");
+
+    window.scrollTo(0, 0);
+
+});
+
+
+// TUTUP MENU APABILA KLIK DI LUAR
+
+document.addEventListener("click", function(event) {
+
+    if (
+        !menuPanel.hidden &&
+        !menuPanel.contains(event.target) &&
+        !menuButton.contains(event.target)
+    ) {
+
+        menuPanel.hidden = true;
+
+        menuButton.setAttribute("aria-expanded", "false");
+
     }
 
-    output.value = "";
-    message.textContent = "Sila masukkan teks.";
-}
-
-// Proses terjemahan
-async function processText() {
-    const text = input.value.trim();
-
-    if (!text) {
-        message.textContent = "Sila masukkan teks dahulu.";
-        return;
-    }
-
-    const endpoint = currentMode === "jawi"
-        ? "/convert"
-        : "/reverse";
-
-    mainButton.disabled = true;
-    message.textContent = "Sedang menterjemah...";
-
-    try {
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text: text })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error || "Terjemahan gagal.");
-        }
-
-        output.value = data.result;
-        message.textContent = "Terjemahan selesai!";
-
-    } catch (error) {
-        console.error(error);
-        message.textContent =
-            "Terjemahan gagal. Sila cuba lagi.";
-
-    } finally {
-        mainButton.disabled = false;
-    }
-}
-
-// Padam teks
-function clearText() {
-    input.value = "";
-    output.value = "";
-    message.textContent = "Ruangan telah dikosongkan.";
-}
-
-// Salin hasil terjemahan
-async function copyText() {
-    if (!output.value) {
-        message.textContent = "Tiada teks untuk disalin.";
-        return;
-    }
-
-    try {
-        await navigator.clipboard.writeText(output.value);
-        message.textContent = "Teks berjaya disalin!";
-
-    } catch (error) {
-        output.focus();
-        output.select();
-
-        message.textContent =
-            "Sila salin teks yang telah dipilih.";
-    }
-}
-    const menuButton = document.getElementById("menuButton");
-const menuPanel = document.getElementById("menuPanel");
-
-if (menuButton && menuPanel) {
+});
 
     menuButton.addEventListener("click", function () {
         const isOpen = !menuPanel.hidden;
